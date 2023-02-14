@@ -1,5 +1,6 @@
 package com.umut.account.service;
 
+import com.umut.account.dto.CustomerDto;
 import com.umut.account.dto.converter.CustomerDtoConverter;
 import com.umut.account.exception.CustomerNotFoundException;
 import com.umut.account.model.Customer;
@@ -9,11 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final CustomerDtoConverter customerDtoConverter;
+    private final CustomerDtoConverter converter;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerDtoConverter customerDtoConverter) {
+    public CustomerService(CustomerRepository customerRepository, CustomerDtoConverter converter) {
         this.customerRepository = customerRepository;
-        this.customerDtoConverter = customerDtoConverter;
+        this.converter = converter;
     }
 
     protected Customer findCustomerById(String id) {
@@ -21,4 +22,7 @@ public class CustomerService {
                 .orElseThrow(() -> new CustomerNotFoundException("Customer could not find by id "+id));
     }
 
+    public CustomerDto getCustomerById(String customerId) {
+        return converter.convertToCustomerDto(findCustomerById(customerId));
+    }
 }
