@@ -5,7 +5,6 @@ import com.umut.account.dto.converter.CustomerDtoConverter;
 import com.umut.account.exception.CustomerNotFoundException;
 import com.umut.account.model.Customer;
 import com.umut.account.repository.CustomerRepository;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -16,7 +15,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomerServiceTest {
 
@@ -59,5 +57,16 @@ public class CustomerServiceTest {
         CustomerDto result = service.getCustomerById("id");
 
         assertEquals(result, customerDto);
+    }
+
+    @Test
+    public void testGetCustomerById_whenCustomerIdDoesNotExists_shouldThrowCustomerNotFoundException() {
+        when(customerRepository.findById("id")).thenReturn(Optional.empty());
+
+        assertThrows(CustomerNotFoundException.class,
+                () -> service.getCustomerById("id"));
+
+        // converterın hiçbir methodu çağırılmadğını verify ediyor
+        Mockito.verifyNoInteractions(converter);
     }
 }
