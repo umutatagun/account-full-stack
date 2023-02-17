@@ -23,7 +23,7 @@ public class AccountApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Customer customer = customerRepository.save(new Customer("", "Hüseyin", "Beller", new HashSet<>()));
+		Customer customer = customerRepository.save(new Customer("", "Umut", "Atagün", new HashSet<>()));
 		System.out.println(customer.getId());
 	}
 }
