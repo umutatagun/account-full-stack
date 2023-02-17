@@ -17,6 +17,8 @@ data class Customer(
        val accounts: Set<Account>?
 ) {
 
+    constructor(name: String, surname: String) : this ("", name, surname, HashSet())
+
     override fun hashCode(): Int {
         var result = id?.hashCode() ?: 0
         result = 31 * result + (name?.hashCode() ?: 0)

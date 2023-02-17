@@ -30,8 +30,7 @@ public class AccountService {
         Account account = new Account(
                 customer,
                 createAccountRequest.getInitialCredit(),
-                LocalDateTime.now()
-                );
+                LocalDateTime.now());
 
         // compareTo büyükse: 1, esitse : 0 , kucukse: -1 döner o yüzden 0'dan büyükse yazdık
         if (createAccountRequest.getInitialCredit().compareTo(BigDecimal.ZERO) > 0) {
