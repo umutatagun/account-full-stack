@@ -47,7 +47,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void testGetCustomerById_whenCustomerIdExists_shouldReturnCustomer() {
+    public void testGetCustomerById_whenCustomerIdExists_shouldReturnCustomerDto() {
         Customer customer = new Customer("id", "name", "surname", Set.of());
         CustomerDto customerDto = new CustomerDto("id", "name", "surname", Set.of());
 

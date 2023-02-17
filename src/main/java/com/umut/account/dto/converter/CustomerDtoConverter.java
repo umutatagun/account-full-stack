@@ -5,6 +5,8 @@ import com.umut.account.dto.CustomerDto;
 import com.umut.account.model.Customer;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -30,6 +32,12 @@ public class CustomerDtoConverter {
                 from.getSurname(),
                 from.getAccounts().stream().map(customerAccountDtoConverter::convert).collect(Collectors.toSet())
         );
+    }
+
+    public Set<CustomerDto> convertToCustomerDto(List<Customer> from) {
+        return from.stream()
+                .map(this::convertToCustomerDto)
+                .collect(Collectors.toSet());
     }
 
 }

@@ -1,6 +1,5 @@
 package com.umut.account.dto
 
-import com.umut.account.model.Transaction
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
